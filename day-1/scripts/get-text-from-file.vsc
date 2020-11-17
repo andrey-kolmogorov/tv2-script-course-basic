@@ -1,0 +1,51 @@
+dim content as String
+
+Sub load()
+if system.LoadTextFile("C:/install/example.txt", content) then
+	println (12, "File loaded!")
+	this.geometry.text = content
+else
+	println (12, "File NOT loaded!")
+end if
+end sub
+
+sub OnInitParameters()
+	RegisterPushButton("but1", "Push me 1!", 1)
+	RegisterPushButton("but2", "Push me 2!", 2)
+end sub
+
+sub OnExecAction(buttonId As Integer)
+    if buttonId = 1 then
+		load
+	elseif buttonId = 2 then
+		
+	end if
+end sub
+
+Sub OnInitParameters()
+	RegisterParameterString("et_Input","Text input","",50,50,"")
+End Sub
+
+Sub OnParameterChanged(parameterName As String)
+	Select Case parameterName
+		Case "et_Input"
+			println("You are writing " & GetParameterString("et_Input"))
+	End Select
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+dim conts as Array[Container]
+dim def_color as Color
+def_color.SetRGB8(204,204,204)
+
+'ApplyRGB subroutine applying RGB values to all children subcontainers, calculating them by using start and end 
+Sub ApplyRGB()
+	dim step_r, step_g, step_b as Double
+	this.GetContainerAndSubContainers(conts,false)
+	step_r = (GetParameterColor("color_end").Red - GetParameterColor("color_start").Red)/conts.Ubound
+	step_g = (GetParameterColor("color_end").Green - GetParameterColor("color_start").Green)/conts.Ubound
+	step_b = (GetParameterColor("color_end").Blue - GetParameterColor("color_start").Blue)/conts.Ubound
+	println (14,"My steps are: " & step_r & "," & step_g & "," & step_b)
+	for index = 1 to conts.Ubound
+		conts[index].Material.Color.Red = GetParameterColor("color_start").Red + step_r * (index - 1)
+		conts[index].Material.Color.Green = GetParameterColor("color_start").Green + step_g * (index - 1)
+		conts[index].Material.Color.Blue = GetParameterColor("color_start").Blue + step_b * (index - 1)
+	next
+End Sub
+
+
+
+Sub OnInit()
+	Dim aObjects As Array[Container]
+This.GetContainerAndSubContainers(aObjects,TRUE)
+
+For Each myContainer In aObjects
+'Assign the variable plPlugin the plugin called "ControlNum" - Conntrol Number
+Dim plPlugin As PluginInstance = myContainer.GetFunctionPluginInstance("ControlNum") 
+'If the plugin exists (not null) then do something with the container
+	If plPlugin <> NULL Then
+		'Get the current value from plugin’s Field Identifier and convert it from a string to a integer using CInt.
+		Dim iValue As Integer = CInt(plPlugin.GetParameterString("input"))
+		'Add 9000 to the value
+		iValue = iValue + 9000
+		'Assign the new Field Identifier
+		plPlugin.SetParameterString("input",CStr(iValue))
+	End If
+Next
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
