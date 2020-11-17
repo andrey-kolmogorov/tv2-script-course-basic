@@ -1,0 +1,13 @@
+Sub OnInit()
+    Dim sMyContainer As String = This.FirstChildContainer.Name
+    Select Case sMyContainer
+        Case "Apple"
+            Println("Name is Apple")
+        Case "Orange"
+            Println("Name is Orange")
+        Case "Peach"
+                Println("Name is Peach")
+        Case Else
+            Println("No name is matched")       
+    End Select
+End Sub

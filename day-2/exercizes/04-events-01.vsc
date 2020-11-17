@@ -1,0 +1,7 @@
+sub OnLButtonDown()
+    this.Alpha.Value = 20
+end sub
+
+sub OnLButtonUp()
+    this.Alpha.Value = 100
+end sub

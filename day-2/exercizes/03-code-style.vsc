@@ -1,0 +1,14 @@
+Sub m2()
+Dim dv1 as integer
+Dv1 = 3
+For o = 0 to 10
+Dv1 = Dv1 + 1
+If dv1 > 8 then
+Ds = 3.14
+Else
+Ds = 3.14*2
+Next
+Dim ds2 as double
+Ds2 = 3.14
+Println(Ds2)
+End sub
