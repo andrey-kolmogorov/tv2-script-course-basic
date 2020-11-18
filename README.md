@@ -5,6 +5,7 @@
   - [Objectives](#objectives)
   - [Topics](#topics)
     - [Day 1](#day-1)
+      - [Course setup](#course-setup)
       - [Introduction. Why scripting. What is it](#introduction-why-scripting-what-is-it)
       - [Script construction](#script-construction)
       - [My first script](#my-first-script)
@@ -36,9 +37,14 @@ The main objective of this course is to introduce you to Viz Artist’s scriptin
 
 ### Day 1
 
+#### Course setup
+
+Setting up the course's tools. VS Code + extension. Viz Artist + GH.
+
 #### Introduction. Why scripting. What is it
 
 Learn what scripting is and what can scripting do for you. Get examples of various scripting projects from customers to demonstrate what is possible.
+
 #### Script construction
 
 Get into the mindset of what happens during a typical script execution.
