@@ -1,0 +1,31 @@
+sub OnInitPlugin()
+	RegisterPlugin("SetActive")
+	RegisterPluginFolder("ScriptPlugins")
+	RegisterPluginType(PLUGIN_TYPE_FUNCTION)
+end sub
+
+dim conts as Array[Container]
+
+sub OnExecAction(buttonId As Integer)
+    this.GetContainerAndSubContainers(conts, false)
+    if buttonId = 1 then
+        for each cont in conts
+            cont.active = true
+        next
+    elseif buttonId = 2 then
+        for each cont in conts
+            if cont.texture.valid then
+                System.SendCommand("#" & cont.vizid & "*TEXTURE*COMPRESSION SET DXT5")
+                System.SendCommand("#" & cont.vizid & "*TEXTURE*ANISOTROPY SET 16.0")
+            end if
+        next
+    end if
+    SendGuiRefresh()
+end sub
+
+sub OnInitParameters()
+    registerPushButton("set_active", "Set active", 1)
+    registerPushButton("set_tex_comp", "Set texture compression", 2)
+end sub
+
+

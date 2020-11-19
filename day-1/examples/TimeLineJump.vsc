@@ -1,0 +1,21 @@
+dim dirDefault as Director = Stage.FindDirector("Default")
+dim dirLeftIn as Director = Stage.FindDirector("Left_in")
+dim conHeadline as Container = Scene.FindContainer("Headline")
+
+sub OnInitParameters()
+	RegisterParameterBool("selector", "Headline", true)
+end sub
+
+sub OnParameterChanged(parameterName As String)
+	if GetParameterBool("selector") then
+		dirDefault.Time = 0.0
+		dirLeftIn.Offset = 0.0
+		dirLeftIn.Time = 0.0
+		conHeadline.Active = true
+	else
+		dirDefault.Time = 1.0
+		dirLeftIn.Offset = 1.0
+		dirLeftIn.Time = 1.0
+		conHeadline.Active = false
+	end if
+end sub

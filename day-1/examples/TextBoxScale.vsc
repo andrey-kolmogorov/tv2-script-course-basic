@@ -1,0 +1,38 @@
+dim scale_y_max as Double = 75.0
+dim scale_step as Double = 0.05
+dim tbox as Double = 435.0
+dim number_of_cycles as Integer = 0
+
+sub OnInitParameters()
+	Geometry.RegisterTextChangedCallback()
+	RegisterPushButton("Takebb", "Take set_size_bb", 1)
+	RegisterParameterDouble("scale_step", "Scale step", 0.05, 0.0, 1.0)
+end sub
+
+sub set_size_bb()
+    number_of_cycles = 0
+    dim bbox as Vertex
+    scaling.x = 1.0
+    scaling.y = 1.0
+    System.SendCommand("GEOM*#" & geometry.vizid & "*TBOX*WIDTH SET " & tbox / scaling.y)
+    RecomputeMatrix()
+    bbox = GetBoundingBoxDimensions()
+    Do While bbox.y > scale_y_max
+        scaling.x = scaling.x - GetParameterDouble("scale_step")
+        scaling.y = scaling.y - GetParameterDouble("scale_step")
+        System.SendCommand("GEOM*#" & geometry.vizid & "*TBOX*WIDTH SET " & tbox / scaling.y)
+        RecomputeMatrix()
+        bbox = GetTransformedBoundingBoxDimensions()
+        number_of_cycles = number_of_cycles + 1 
+    Loop
+println "Number of cycles " & number_of_cycles
+end sub
+
+
+sub OnExecAction(buttonId As Integer)
+	set_size_bb()
+end sub
+
+sub OnGeometryChanged(geom As Geometry)
+	set_size_bb()
+end sub
